@@ -17,9 +17,9 @@ def damerau_levenshtein(s1, len_s1, s2, len_s2):
     len_s1 = len(s1)
     len_s2 = len(s2)
     for i in range(-1, len_s1 + 1):
-        d[(i, -1)] = i + 1
+        d[i, -1] = i + 1
     for j in range(-1, len_s2 + 1):
-        d[(-1, j)] = j + 1
+        d[-1, j] = j + 1
 
     for i in range(len_s1):
         for j in range(len_s2):
@@ -27,6 +27,7 @@ def damerau_levenshtein(s1, len_s1, s2, len_s2):
                 cost = 0
             else:
                 cost = 1
+                
             d[(i, j)] = min(
                 d[i - 1, j] + 1,  # Deletion
                 d[i, j - 1] + 1,  # Insertion
